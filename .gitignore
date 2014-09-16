@@ -1,0 +1,5 @@
+*.pyc
+.DC_Store
+pip-log.txt
+twistd.log
+twistd.pid

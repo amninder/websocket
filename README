@@ -1,0 +1,2 @@
+1.  url for websocket to listen is defined in line 23 of ws.py
+2.  run 'python ws.py'
