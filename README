@@ -1,4 +1,4 @@
-1.  url for websocket to listen is defined in line 23 of ws.py
+1.  port number for websocket to listen is defined in line 26 of ws.py
 2.  run
   a. 'python ws.py' or
   b. "twistd -y ws.py"
