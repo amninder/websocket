@@ -1,8 +1,0 @@
-1.  port number for websocket to listen is defined in line 26 of ws.py
-2.  run
-  a. 'python ws.py' or
-  b. "twistd -y ws.py"
-      this option will generate two files
-        (i).  "twistd.log". This file will keep the track of the log for the twisted websocket.
-        (ii). "twistd.pid". This file will store the PID of the twistd process which can be used to kill the process by "kill -INT <PID number>".
-  c. I am using python-foreman, so you can run 'foreman start'.
