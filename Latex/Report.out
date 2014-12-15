@@ -1,0 +1,9 @@
+\BOOKMARK [1][-]{section.1}{Websocket}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Requirements}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Commands}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{ws.py}{}% 4
+\BOOKMARK [1][-]{section.3}{broadcast.py}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{BroadcastServerProtocol\(WebSocketServerProtocol\)}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{index.html}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Html code Snippet}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{JS code Snippet}{section.4}% 9

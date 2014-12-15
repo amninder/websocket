@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"
+        type="text/javascript" charset="utf-8"></script>
+      <script type="text/javascript">
+         var sock = null;
+         var ellog = null;
+
+         window.onload = function() {
+
+            var wsuri;
+            ellog = document.getElementById('log');
+
+            if (window.location.protocol === "file:") {
+                wsuri = "ws://localhost:5000";
+                // or the IP address of the machine ws running on
+            } else {
+               wsuri = "ws://" + window.location.hostname + ":5000";
+            }
+
+            if ("WebSocket" in window) {
+                sock = new WebSocket(wsuri);
+            } else if ("MozWebSocket" in window) {
+               sock = new MozWebSocket(wsuri);
+            } else {
+               log("Browser does not support WebSocket!");
+            }
+
+            if (sock) {
+               sock.onopen = function() {
+                  log("Connected to " + wsuri);
+               }
+
+               sock.onclose = function(e) {
+                  log("Connection closed (wasClean = " +
+                                          e.wasClean +
+                                          ", code = " +
+                                          e.code +
+                                          ", reason = '" +
+                                          e.reason + "')");
+                  sock = null;
+               }
+
+               sock.onmessage = function(e) {
+                  log("Got echo: " + e.data);
+               }
+            }
+         };
+
+         function broadcast() {
+                var delay = 100;
+            var msg = document.getElementById('message').value;
+            if (sock) {
+               sock.send(msg);
+               log("Sent: " + msg);
+            } else {
+               log("Not connected.");
+            }
+         };
+        function loop(sock, delay){
+            var dt = new Date();
+            var time = dt.getTime()/1000;
+            sock.send(time);
+            setTimeout(
+                    loop(sock, delay), /* Request next message */
+                    delay /* ..after 1 seconds */
+                );
+        }
+
+         function log(m) {
+            ellog.innerHTML += m + '\n';
+            ellog.scrollTop = ellog.scrollHeight;
+         };
+      </script>
+   </head>
+   <body>
+      <h1>WebSocket Broadcast Demo</h1>
+      <noscript>You must enable JavaScript</noscript>
+      <form>
+         <p>Broadcast Message:
+            <input
+              id="message"
+              type="text"
+              size="50"
+              maxlength="50"
+              value="Hello from Browser!"
+            >
+          </p>
+      </form>
+      <button onclick='broadcast();'>Broadcast Message</button>
+      <pre
+        id="log"
+        style="height: 20em;
+              overflow-y: scroll;
+              background-color: #faa;"
+      >
+      </pre>
+   </body>
+</html>

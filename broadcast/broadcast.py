@@ -5,19 +5,14 @@ from twisted.python import log
 from twisted.web.server import Site
 from twisted.web.static import File
 
-from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol, listenWS
-
-
-
-
-
+from autobahn.twisted.websocket import WebSocketServerFactory,\
+                                       WebSocketServerProtocol,\
+                                       listenWS
 
 
 class BroadcastServerProtocol(WebSocketServerProtocol):
-
     def onOpen(self):
         self.factory.register(self)
-
     def onMessage(self, payload, isBinary):
         if not isBinary:
             # msg = "{} from {}".format(payload.decode('utf8'), self.peer)
